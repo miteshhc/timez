@@ -4,9 +4,10 @@ pkgrel=1
 pkgdesc="A powerful tool for measuring command execution time and resource usage."
 arch=('x86_64')
 url="https://github.com/veloXm/Timez"
+source=('timez')
 license=('GPL3')
-depends=()
+sha256sums=('SKIP')
 
 package() {
-    install -Dm755 timez "$pkgdir/usr/bin/timez"
+    sudo install -Dm755 'timez' '/usr/bin/timez'
 }
