@@ -1,0 +1,9 @@
+pkgbase = timez
+	pkgdesc = A powerful tool for measuring command execution time and resource usage.
+	pkgver = 1.0
+	pkgrel = 1
+	url = https://github.com/veloXm/Timez
+	arch = x86_64
+	license = GPL3
+
+pkgname = timez
