@@ -179,10 +179,14 @@ void printUsage(int duration, rusage& usage, string outputFileName, bool verbose
             outFile << "Runtime                                    -> " << static_cast<float>(duration) / 1000000 << " s" << endl;
 
         if (verbose) {
-            outFile << "CPU time used in user mode                 -> " << static_cast<float>(usage.ru_utime.tv_usec) / 1000 << " ms" << endl;
-            outFile << "CPU time used in kernel mode               -> " << static_cast<float>(usage.ru_stime.tv_usec) / 1000 << " ms" << endl;
-            outFile << "Number of input block(s)                   -> " << usage.ru_inblock << endl;
-            outFile << "Number of output block(s)                  -> " << usage.ru_oublock << endl;
+            outFile<< "CPU time used in user mode                 -> " << static_cast<float>(usage.ru_utime.tv_usec) / 1000 << " ms" << endl;
+            outFile<< "CPU time used in kernel mode               -> " << static_cast<float>(usage.ru_stime.tv_usec) / 1000 << " ms" << endl;
+            outFile<< "Page reclaims (Soft-Page Fault)            -> " << usage.ru_minflt << endl;
+            outFile<< "Page faults (Hard-Page Fault)              -> " << usage.ru_minflt << endl;
+            outFile<< "Number of input block(s)                   -> " << usage.ru_inblock << endl;
+            outFile<< "Number of output block(s)                  -> " << usage.ru_oublock << endl;
+            outFile<< "Voluntary context switches                 -> " << usage.ru_nvcsw << endl;
+            outFile<< "Involuntary context switches               -> " << usage.ru_nivcsw << endl;
         }
 
         outFile.close();
@@ -202,8 +206,12 @@ void printUsage(int duration, rusage& usage, string outputFileName, bool verbose
         if (verbose) {
             cout << "CPU time used in user mode                 -> " << static_cast<float>(usage.ru_utime.tv_usec) / 1000 << " ms" << endl;
             cout << "CPU time used in kernel mode               -> " << static_cast<float>(usage.ru_stime.tv_usec) / 1000 << " ms" << endl;
+            cout << "Page reclaims (Soft-Page Fault)            -> " << usage.ru_minflt << endl;
+            cout << "Page faults (Hard-Page Fault)              -> " << usage.ru_minflt << endl;
             cout << "Number of input block(s)                   -> " << usage.ru_inblock << endl;
             cout << "Number of output block(s)                  -> " << usage.ru_oublock << endl;
+            cout << "Voluntary context switches                 -> " << usage.ru_nvcsw << endl;
+            cout << "Involuntary context switches               -> " << usage.ru_nivcsw << endl;
         }
     }
 }

@@ -7,8 +7,8 @@ url="https://github.com/veloXm/Timez"
 source=('timez' 'timez_s')
 license=('GPL3')
 depends=('gcc')
-sha256sums=('ba8e670be224a75513e562b5fd9d4bbcccd2b2fcf8f9b1d76109329f57f7ac1b'
-    'ceb3eb0d8f2aa3834ebcb9e57f7074aea76a9e2ebdbc8a7a64747eb6e073b2d5')
+sha256sums=('b63265000f4f3c84aa8d3d754a663a2bcf11dc5aca5ff682a637b9ae23439aa7'
+    '990332cb8f72add343d558b86f8e284d80355bde309e71bcc9fcdb5a1876311e')
 
 maintainer="Mitesh Soni <smiteshhc@gmail.com>"
 author="Mitesh Soni"
