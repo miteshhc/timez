@@ -1,5 +1,5 @@
 pkgname=timez
-pkgver=1.0
+pkgver=1.2
 pkgrel=1
 pkgdesc="A powerful tool for measuring command execution time and resource usage."
 arch=('x86_64')
