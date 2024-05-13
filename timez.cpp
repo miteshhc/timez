@@ -89,7 +89,7 @@ void help()
         cout << "\nFlags:" << endl;
         cout << "\t-f <execute for>                   --fixed-interval <execute for>" << endl;
         cout << "\t-h                                 --help" << endl;
-        cout << "\t-o                                 --output-file" << endl;
+        cout << "\t-o <filename>                      --output-file <filename>" << endl;
         cout << "\t-v                                 --verbose" << endl;
         cout << "\nNOTE: The run-time is almost always +10ms of original time and may vary on machines." << endl;
         exit(EXIT_FAILURE);

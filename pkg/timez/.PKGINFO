@@ -6,7 +6,7 @@ xdata = pkgtype=pkg
 pkgver = 1.0-1
 pkgdesc = A powerful tool for measuring command execution time and resource usage.
 url = https://github.com/veloXm/Timez
-builddate = 1715597525
+builddate = 1715598025
 packager = Unknown Packager
 size = 0
 arch = x86_64
