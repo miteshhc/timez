@@ -34,3 +34,6 @@ Timez is licensed under the GNU General Public License v3.0 (GPL-3.0).
 See the LICENSE file for more details.
 
 ## Contributions:
+Contributions are welcome! If you have any suggestions, bug reports, or want
+to contribute enhancements, feel free to open an issue or submit a pull request.
+Let's make Timez even better together!
