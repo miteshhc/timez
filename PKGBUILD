@@ -1,17 +1,16 @@
+# Maintainer: Mitesh <smiteshhc@gmail.com>
+
 pkgname=timez
 pkgver=1.2
 pkgrel=1
 pkgdesc="A powerful tool for measuring command execution time and resource usage."
 arch=('x86_64')
 url="https://github.com/veloXm/Timez"
-source=('timez' 'timez_s')
 license=('GPL3')
 depends=('gcc')
-sha256sums=('b63265000f4f3c84aa8d3d754a663a2bcf11dc5aca5ff682a637b9ae23439aa7'
-    '990332cb8f72add343d558b86f8e284d80355bde309e71bcc9fcdb5a1876311e')
-
-maintainer="Mitesh Soni <smiteshhc@gmail.com>"
-author="Mitesh Soni"
+source=('timez' 'timez_s')
+sha256sums=('bda028adc12928b87cda67095eb2e4d13646fa83a3f25883cf7593b8b841415f'
+    'c50a2d1d5b39c6d9be64a947d02c5f4f14a829dc487c26a5b7ab9d595c90e82e')
 
 package() {
     echo "Installing timez...\n"
