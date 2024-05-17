@@ -7,7 +7,6 @@
 #include <cstdlib>
 #include <chrono>                                   // For high-precision wall-clock
 #include <fstream>
-#include <sstream>
 #include <string>
 #include <unistd.h>                                 // For execl, fork, usleep
 #include <sys/resource.h>                           // For getrusage
@@ -25,26 +24,12 @@ void help();
 int executeCommand(const char *, int);
 int measureResource(int);
 void printUsage(long long int, string);
-bool measureIOvalues();
 
 
 // Global Variables
-int processID;
 bool verbose = false;
 bool outputFile = false;
-bool sudo = false;
 rusage usage;
-
-struct Process_io {
-    unsigned long long int rchar{};
-    unsigned long long int wchar{};
-    unsigned long long int syscr{};
-    unsigned long long int syscw{};
-    unsigned long long int read_bytes{};
-    unsigned long long int write_bytes{};
-    unsigned long long int cancelled_write_bytes{};
-} io{};
-
 
 int main(int argc, char *argv[]) {
     // Check if arguments are provided correctly
@@ -95,11 +80,6 @@ int main(int argc, char *argv[]) {
             help();
         }
 
-        // Run with elevated privilege
-        else if (strcmp("-e", argv[i]) == 0 || strcmp("--elevated", argv[i]) == 0) {
-            sudo = true;
-        }
-
         // Otherwise, it is part of the command to execute
         else {
             commandArgs.push_back(argv[i]);
@@ -112,11 +92,6 @@ int main(int argc, char *argv[]) {
         help();
     }
 
-
-    // Add sudo to run with elevated privileges
-    if (sudo) {
-        command = "sudo ";
-    }
 
     // Construct the command string
     for (const auto& arg : commandArgs) {
@@ -144,13 +119,11 @@ void help()
 {
     cout << "Usage: timez <command> (flag) " << endl;
     cout << "\nFlags:" << endl;
-    cout << "\t-e                                 --elevated" << endl;
     cout << "\t-f <execute for>                   --fixed-interval <execute for>" << endl;
     cout << "\t-h                                 --help" << endl;
     cout << "\t-o <filename>                      --output-file <filename>" << endl;
     cout << "\t-v                                 --verbose" << endl;
-    cout << "\nNOTE: The run-time is almost always +1ms of original time and may vary on machines." << endl;
-    cout << "       Some features require elevated privileges." << endl;
+    cout << "\nNOTE: The run-time is almost always +1ms of original time while using fixed-interval flag." << endl;
     exit(EXIT_FAILURE);
 }
 
@@ -221,50 +194,6 @@ int measureResource(int who) {
     return ret == 0;
 }
 
-// Measure IO values from proc/[pid]/io
-bool measureIOvalues() {
-    // Set ifstream to /proc/[pid]/io
-    ifstream file("/proc/" + to_string(processID) + "/io");
-
-    // Make sure that file is open
-    if (!file.is_open()) {
-        cerr << "\nFailed to open /proc/" << processID << "/io\n" << endl;
-        return false;
-    }
-
-    string line;
-
-    // Store values from /proc/[pid]/io to `io` structure
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string key, value;
-
-        ss >> key >> value;
-
-        if (key == "rchar:") {
-            io.rchar = stoull(value);
-        } else if (key == "wchar:") {
-            io.wchar = stoull(value);
-        } else if (key == "syscr:") {
-            io.syscr = stoull(value);
-        } else if (key == "syscw:") {
-            io.syscr = stoull(value);
-        } else if (key == "read_bytes:") {
-            io.read_bytes = stoull(value);
-        } else if (key == "write_bytes:") {
-            io.write_bytes = stoull(value);
-        } else if (key == "cancelled_write_bytes:") {
-            io.cancelled_write_bytes = stoull(value);
-        } else {
-            cerr << "Something wrong has happened." << endl;
-        }
-    }
-
-    file.close();
-
-    return true;
-}
-
 // Print the measured resources
 void printUsage(long long int duration, string outputFileName)
 {
@@ -294,14 +223,6 @@ void printUsage(long long int duration, string outputFileName)
             outFile << "Page faults (Hard-Page Fault)              -> " << usage.ru_majflt << endl;
             outFile << "Number of input block(s)                   -> " << usage.ru_inblock << endl;
             outFile << "Number of output block(s)                  -> " << usage.ru_oublock << endl;
-
-            if (sudo) {
-                outFile << "Bytes read (Page Cache & Physical Disk)    -> " << io.rchar << endl;
-                outFile << "Bytes read (Physical Disk)                 -> " << io.read_bytes << endl;
-                outFile << "Bytes written (Page Cache & Physical Disk) -> " << io.wchar << endl;
-                outFile << "Bytes written (Physical Disk)              -> " << io.write_bytes << endl;
-            }
-
             outFile << "Voluntary context switches                 -> " << usage.ru_nvcsw << endl;
             outFile << "Involuntary context switches               -> " << usage.ru_nivcsw << endl;
         }
@@ -328,14 +249,6 @@ void printUsage(long long int duration, string outputFileName)
             cout << "Page faults (Hard-Page Fault)              -> " << usage.ru_majflt << endl;
             cout << "Number of input block(s)                   -> " << usage.ru_inblock << endl;
             cout << "Number of output block(s)                  -> " << usage.ru_oublock << endl;
-
-            if (sudo) {
-                cout << "Bytes read (Page Cache & Physical Disk)    -> " << io.rchar << endl;
-                cout << "Bytes read (Physical Disk)                 -> " << io.read_bytes << endl;
-                cout << "Bytes written (Page Cache & Physical Disk) -> " << io.wchar << endl;
-                cout << "Bytes written (Physical Disk)              -> " << io.write_bytes << endl;
-            }
-
             cout << "Voluntary context switches                 -> " << usage.ru_nvcsw << endl;
             cout << "Involuntary context switches               -> " << usage.ru_nivcsw << endl;
         }
