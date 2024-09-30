@@ -1,6 +1,6 @@
 ## Description:
 
-Timez is your go-to companion for measuring resource usage and run-time of
+timez is your go-to companion for measuring resource usage and run-time of
 command. It is a simple, minimal and performant utility developed in C++.
 It allows you to measure detailed metrics of a command's execution time and
 resource usage. It can be used to improve the performance of your code or test
@@ -55,11 +55,11 @@ cd timez && g++ timez.cpp -o timez
 
 ## License:
 
-Timez is licensed under the GNU General Public License v3.0 (GPL-3.0).
+timez is licensed under the GNU General Public License v3.0 (GPL-3.0).
 See the LICENSE file for more details.
 
 
 ## Contributions:
 Contributions are welcome! If you have any suggestions, bug reports, or want
 to contribute enhancements, feel free to open an issue or submit a pull request.
-Let's make Timez even better together!
+Let's make timez even better together!
