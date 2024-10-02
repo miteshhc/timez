@@ -1,5 +1,3 @@
-// TODO: Add IO read/write speed
-
 #include <cstddef>
 #include <iostream>
 #include <cerrno>                                   // For EFAULT, EINVAL
