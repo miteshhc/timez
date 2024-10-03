@@ -9,7 +9,7 @@ bool verbose = false;
 std::vector<std::string> command;
 
 void handleArguments(int argc, char** argv) {
-    cxxopts::Options options("timez", "A simple tool to measure resource usage of command");
+    cxxopts::Options options("timez", "A simple utility for measuring the execution time and resource usage of commands.");
 
     options.add_options()
         ("d,duration", "Execute command for specific duration", cxxopts::value<double>()) // Changed to double

@@ -15,6 +15,28 @@ measuring the performance and resource usage of commands.
 - Easy-to-read output
 - Lightweight
 
+## Options:
+
+| Option | Description |
+| --- | --- |
+| `-h` | Display help message. |
+| `-v` | Display version information. |
+| `-d` | Set the duration of the command execution in seconds. |
+| `-o` | Modify the default stream or specify a file to save the results. |
+
+### Examples
+
+```bash
+$ ./timez sleep 5
+```
+
+```bash
+$ ./timez sleep 5 -d 2.5
+```
+
+```bash
+$ ./timez sleep 5 -v
+```
 
 ## Installation:
 
@@ -38,7 +60,7 @@ cd timez && g++ args.cpp main.cpp timez.cpp utils.cpp -o timez
 ./timez
 ```
 
-### ⚠️ Warning: the only option is to compile from source, as the version in release is not up-to-date.
+#### ⚠️ Warning: the only option is to compile from source, as the version in release is not up-to-date.
 
 
 ## License:
