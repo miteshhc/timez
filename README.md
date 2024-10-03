@@ -38,8 +38,8 @@ cd timez && g++ args.cpp main.cpp timez.cpp utils.cpp -o timez
 ./timez
 ```
 
-### Now, the only option is to compile from source, as the version in release is
-### not up-to-date.
+### ⚠️ Warning: the only option is to compile from source, as the version in
+release is not up-to-date.
 
 
 ## License:
