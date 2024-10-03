@@ -8,10 +8,9 @@ measuring the performance and resource usage of commands.
 ## Features:
 
 - Measure execution time and resource usage of commands.
-- Option to specify a fixed duration for command execution.
+- Set the duration of the command execution.
 - Ability to save results to a file.
-- Verbosity mode for detailed output.
-- Easy-to-use command-line interface.
+- Verbose mode for detailed output.
 - Easy-to-read output
 - Lightweight
 
@@ -20,7 +19,7 @@ measuring the performance and resource usage of commands.
 | Option | Description |
 | --- | --- |
 | `-h` | Display help message. |
-| `-v` | Display version information. |
+| `-v` | Display more verbose output. |
 | `-d` | Set the duration of the command execution in seconds. |
 | `-o` | Modify the default stream or specify a file to save the results. |
 
