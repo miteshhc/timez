@@ -18,10 +18,10 @@ measuring the performance and resource usage of commands.
 
 | Option | Description |
 | --- | --- |
-| `-h` | Display help message. |
-| `-v` | Display more verbose output. |
-| `-d` | Set the duration of the command execution in seconds. |
-| `-o` | Modify the default stream or specify a file to save the results. |
+| `-h, --help` | Display help message. |
+| `-v, --verbose` | Display more verbose output. |
+| `-d, --duration` | Set the duration of the command execution in seconds. |
+| `-o, --out` | Modify the default stream and save the results to a file. |
 
 ### Examples
 
@@ -37,29 +37,33 @@ $ ./timez sleep 5 -d 2.5
 $ ./timez sleep 5 -v
 ```
 
-## Installation:
+### Get Started
 
-### For compiling from source:
+#### Pre-compiled binaries:
 
-- Clone the repository:
+Download the latest release from the
+[releases](https://github.com/miteshhc/timez/releases) page.
+
+You can either choose the statically linked binary or the dynamically linked
+binary.
+
+#### Compiling from source:
 
 ```
 git clone https://github.com/miteshhc/timez.git
+cd timez
+make
 ```
 
-- Compile the code:
+#### Arch User Repository
 
-```
-cd timez && g++ args.cpp main.cpp timez.cpp utils.cpp -o timez
-```
+Using AUR helper (for example - yay):
 
-- Run the executable:
-
-```
-./timez
+```bash
+yay -S timez
 ```
 
-#### ⚠️ Warning: the only option is to compile from source, as the version in release is not up-to-date.
+Available [here](https://aur.archlinux.org/packages/timez).
 
 
 ## License:
